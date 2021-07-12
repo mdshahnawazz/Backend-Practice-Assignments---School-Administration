@@ -132,11 +132,11 @@ app.put("/api/student/:id", (req, res) => {
         res.send({ name: obj.name, division: obj.division });
       } else if (
         obj.currentClass != stud[0].currentClass &&
-        obj.name === stud[0].name &&
+        obj.name == stud[0].name &&
         obj.division != stud[0].division
       ) {
         Student.forEach((res) => {
-          if (res.id === id) {
+          if (res.id == id) {
             res.name = stud[0].name;
             res.division = obj.division;
             res.currentClass = obj.currentClass;
@@ -145,7 +145,7 @@ app.put("/api/student/:id", (req, res) => {
         res.send({ division: obj.division, currentClass: obj.currentClass });
       } else {
         Student.forEach((res) => {
-          if (res.id === id) {
+          if (res.id == id) {
             res.name = obj.name;
             res.division = obj.division;
             res.currentClass = obj.currentClass;
@@ -163,13 +163,13 @@ app.delete("/api/student/:id", (req, res) => {
   // console.log(req.params.id);
   // console.log(Student.findIndex(id));
   var stud = Student.filter((stud) => {
-    return stud.id === id;
+    return stud.id == id;
   });
   if (!stud[0]) {
     res.send(404);
   } else {
     Student = Student.filter((stud) => {
-      return stud.id !== id;
+      return stud.id != id;
     });
     // console.log(Student);
     res.send(200);
